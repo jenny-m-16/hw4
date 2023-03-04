@@ -6,20 +6,39 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <link rel="stylesheet" href="/stylesheets/application.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
   </head>
 
   <body>
+
+    <nav class="navbar bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand"></a>
+          <div class="d-flex flex-row">
+              <a href="/login" class="btn btn-default">Login</a> |
+              <a href="/users/new" class="btn btn-default">Sign Up</a>
+          </div>
+      </div>
+    </nav>
+
     <div>
       <%= flash["notice"] %>
     </div>
-    <div>
-      <a href="/">Home</a>
-      <a href="/logout">Logout</a>
-      <a href="/login">Login</a>
-      <a href="/users/new">Signup</a>
-    </div>
 
     <%= yield %>
+
+    <nav class="navbar bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand"></a>
+          <div class="d-flex flex-row">
+              <% if @current_user %>
+                Logged in as: <%= @current_user["username"] %> |
+                <a href="/logout" class="btn btn-default">Logout</a>
+              <% else %>
+              <% end %>
+          </div>
+      </div>
+    </nav>
+  
   </body>
 </html>

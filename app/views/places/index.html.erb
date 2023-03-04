@@ -1,11 +1,35 @@
-<h1>Places</h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tacostagram Final</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
 
-<ul>
-  <% for place in @places %>
-    <li><a href="/places/<%= place["id"] %>"><%= place["name"] %></a></li>
-  <% end %>
-</ul>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  </head>
 
-<p>
-  <a href="/places/new">New place</a>
-</p>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 col-md-3">
+          <% if @current_user %>
+            <h1>Places</h1>
+            <br>
+            <p>
+              <a href="/places/new" class="btn btn-outline-success btn-lg">New place</a>
+            </p>
+          <% else %>
+          <% end %>
+
+          <ul>
+            <% for place in @places %>
+              <li><a href="/places/<%= place["id"] %>"><%= place["name"] %></a></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>
