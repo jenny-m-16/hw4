@@ -20,10 +20,15 @@
       </p>
     <% if @current_user %>
         <% for post in @posts %>
-          <div class="col-md-3 col-sm-6">
+          <div class="col-md-4 col-sm-6 p-5">
               <% if @current_user["id"] == post["user_id"] %>
                 <h3><%= post["title"] %></h3>
-                <h4><%= post["posted_on"] %></h4>
+                <h5><%= post["posted_on"] %></h5>
+                <% if post.uploaded_image.attached? %>
+                  <img src="<%= url_for(post.uploaded_image) %>" class="img-fluid">
+                <% else %>
+                  <img src="<%= post["image"] %>" class="img-fluid">
+                <% end %>
                 <p><%= post["description"] %></p>
               <% else %>
               <% end %>
